@@ -1,0 +1,34 @@
+{
+    "books":[
+        {
+            "id":1,
+            "name":"Yaban",
+            "author":"Yakup Kadri Karaosmanoğlu",
+            "ISBN":"1111",
+            "catagoryId":1
+        },
+        {
+            "id":2,
+            "name":"suç ve ceza",
+            "author":"Yakup Kadri Karaosmanoğlu",
+            "ISBN":"1112",
+            "catagoryId":2
+        }
+
+         
+    ],
+    "catagories":[
+        {
+            "id":1,
+            "name":"Roman"
+        },
+        {
+            "id":2,
+            "name":"Hikaye"
+        },
+        {
+            "id":3,
+            "name":"Deneme"
+        }
+    ]
+}
