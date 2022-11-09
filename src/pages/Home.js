@@ -1,17 +1,16 @@
 import React from "react";
 import Header from "../components/Header";
-import ListBooks from "../components/ListBooks";
+import ListBook from "../components/ListBook";
 
 
-const Home =() =>{
-    return(
-        <div>
-      
+const Home = () => {
+  return (
+    <div>
         <Header />
-        <ListBooks />
-       
-     </div>
-    );
+        <ListBook />
+        
+    </div>
+  )
 }
 
-export default Home 
+export default Home;

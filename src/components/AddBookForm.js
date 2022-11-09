@@ -7,7 +7,6 @@ const AddBookForm = () => {
   const [catagories, setCatagories] = useState(null);
   const [bookname, setBookname] = useState("");
   const [author, setAuthor] = useState("");
-  const [isbn, setIsbn] = useState("");
   const [catagory, setCatagory] = useState("");
 
   useEffect(() => {
@@ -31,23 +30,20 @@ const AddBookForm = () => {
     const newBook = {
       id: new Date().getTime(),
       name: bookname,
-      isbn: isbn,
+      author,
       catagoryId: catagory,
     };
-    
-axios
-.post("http://localhost:3004/books",newBook)
-.then((res)=>{
-console.log("kitapeklendi",res)
-setBookname("");
-setAuthor("");
-setIsbn("");
-setCatagory("");
 
-Navigate("/");
-})
-.catch((err)=>
-console.log(err))
+    axios
+      .post("http://localhost:3004/books", newBook)
+      .then((res) => {
+        console.log("kitapeklendi", res);
+        setBookname("");
+        setAuthor("");
+        setCatagory("");
+        Navigate("/");
+      })
+      .catch((err) => console.log(err));
   };
 
   if (catagories === null) {
@@ -58,10 +54,10 @@ console.log(err))
     <div className="container my-5">
       <form onSubmit={handleSubmit}>
         <div className="row">
-          <div className="col">
+          <div className="col ">
             <input
               type="text"
-              className="form-control"
+              className="form-control text-center"
               placeholder="Kitap Adı"
               value={bookname}
               onChange={(event) => setBookname(event.target.value)}
@@ -70,43 +66,32 @@ console.log(err))
           <div className="col">
             <input
               type="text"
-              className="form-control"
+              className="form-control text-center"
               placeholder="Kitap Yazarı"
               value={author}
               onChange={(event) => setAuthor(event.target.value)}
             />
           </div>
         </div>
-        <div className="row my-5">
-          <div className="col">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Isbn"
-              value={isbn}
-              onChange={(event) => setIsbn(event.target.value)}
-            />
-          </div>
-            <div className="col">
-          <select className="form-select"
-          value={catagory}
-          onChange={(event)=> setCatagory(event.target.value)}>
-            
-            <option value={""} selected>
-              Kategori secinz
-            </option>
-            {catagories.map((cat) => {
-              return( 
-                <option value={cat.id}>{cat.name}</option>
-                );
-            
-            
-            })}
-          </select>
+        <div className="row col m-4 ">
+          <div className="col-4  "></div>
+          <div className="col-4 ">
+            <select
+              className="form-select text-center "
+              value={catagory}
+              onChange={(event) => setCatagory(event.target.value)}
+            >
+              <option value={""} selected>
+                Kategori secinz
+              </option>
+              {catagories.map((cat) => {
+                return <option value={cat.id}>{cat.name}</option>;
+              })}
+            </select>
           </div>
         </div>
         <div className="d-flex justify-content-center">
-          <button type="submit" className="btn btn-primary w-25">
+          <button type="submit" className="btn btn-danger w-25">
             Kaydet
           </button>
         </div>
