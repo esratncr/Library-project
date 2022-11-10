@@ -5,11 +5,13 @@ import Loading from "./Loading";
 import { BsFillTrashFill, BsFillSuitHeartFill } from "react-icons/bs";
 
 const ListBook = () => {
-  const [book, setBook] = useState(null);
+  const [book,setBook] = useState(null);
   const [catagories, setCatagories] = useState(null);
-  const [didUpdate,setDidUpdate] = useState(false);
+  const [didUpdate, setDidUpdate] = useState(false);
 
   useEffect(() => {
+  
+   
     axios
       .get("  http://localhost:3004/books")
       .then((resbook) => {
@@ -28,23 +30,20 @@ const ListBook = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-
+  }, [didUpdate]);
 
   const deleteBook = (id) => {
-    console.log(id);
+    console.log(`http://localhost:3004/books/${id}`);
     axios
-    .delete(`http://localhost:3004/books/${id}`)
-    .then((res)=> {
-      console.log(res);
-      setDidUpdate(!didUpdate);
-    })
-    .catch((err)=> console.log(err));
+      .delete(`http://localhost:3004/books/${id}`)
+      .then((res) => {
+        console.log(res);
+        setDidUpdate(!didUpdate);
+      })
+      .catch((err) => console.log(err));
   };
 
-
-
-  if (book === null || catagories === null) {
+  if (book === null || catagories === null ) {
     return (
       <div>
         <Loading />
@@ -53,10 +52,17 @@ const ListBook = () => {
   }
   console.log("---------------", catagories);
   return (
-    <div className="container my-5 ">
-      <Link className=" btn btn-danger  my-2" to="/add-book">
-        Kitap Ekle
-      </Link>
+    <div className="container   ">
+      <div className="d-flex justify-content-end ">
+        
+
+        <Link className=" btn btn-danger my-4" to="/add-book">
+          Kitap Ekle
+        </Link>
+        <Link className=" btn btn-danger  my-4 m-2" to="/favoriler">
+          Favoriler
+        </Link>
+      </div>
 
       <table className="table table-danger table-hover">
         <thead>
@@ -64,8 +70,8 @@ const ListBook = () => {
             <th scope="col">Kitap Adı</th>
             <th scope="col">Kitap Yazarı</th>
             <th scope="col">Kategoriler</th>
-            
-            <th scope="col">İşlem</th>
+
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -81,13 +87,19 @@ const ListBook = () => {
                 <td>{books?.author}</td>
                 <td>{catagory?.name}</td>
                 <td>
-                  <div className=" " role="group" aria-label="Basic example">
-                    <button className="btn"
-                     onClick={()=> deleteBook(books.id)}>
+                  <div
+                    className="d-flex justify-content-end "
+                    role="group"
+                    aria-label="Basic example"
+                  >
+                    <button
+                      className="btn"
+                      onClick={() => deleteBook(books.id)}
+                    >
                       <BsFillTrashFill />
                     </button>
 
-                    <button className="btn m-2">
+                    <button className="btn btn-sm">
                       <BsFillSuitHeartFill />
                     </button>
                   </div>
