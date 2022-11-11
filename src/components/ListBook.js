@@ -5,13 +5,13 @@ import Loading from "./Loading";
 import { BsFillTrashFill, BsFillSuitHeartFill } from "react-icons/bs";
 
 const ListBook = () => {
-  const [book,setBook] = useState(null);
+  const [book, setBook] = useState(null);
   const [catagories, setCatagories] = useState(null);
   const [didUpdate, setDidUpdate] = useState(false);
+  const [item, setİtem] = useState("");
+  const [changeİsRead, setChangeİsRead] = useState("");
 
   useEffect(() => {
-  
-   
     axios
       .get("  http://localhost:3004/books")
       .then((resbook) => {
@@ -43,7 +43,7 @@ const ListBook = () => {
       .catch((err) => console.log(err));
   };
 
-  if (book === null || catagories === null ) {
+  if (book === null || catagories === null) {
     return (
       <div>
         <Loading />
@@ -54,8 +54,6 @@ const ListBook = () => {
   return (
     <div className="container   ">
       <div className="d-flex justify-content-end ">
-        
-
         <Link className=" btn btn-danger my-4" to="/add-book">
           Kitap Ekle
         </Link>
@@ -67,6 +65,8 @@ const ListBook = () => {
       <table className="table table-danger table-hover">
         <thead>
           <tr>
+            <th></th>
+
             <th scope="col">Kitap Adı</th>
             <th scope="col">Kitap Yazarı</th>
             <th scope="col">Kategoriler</th>
@@ -83,6 +83,18 @@ const ListBook = () => {
 
             return (
               <tr>
+                <td>
+                  {""}
+                  <div className="" style={{w:"2"}}>
+                    <button
+                      onClick={() => changeİsRead(item.id)}
+                      className="btn btn-sm btn-secondary "
+                    >
+                      {item.isRead === true ? "Done" : "Undone"}
+                    </button>
+                  </div>
+                </td>
+
                 <td>{books?.name}</td>
                 <td>{books?.author}</td>
                 <td>{catagory?.name}</td>
