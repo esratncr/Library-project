@@ -8,8 +8,13 @@ const ListBook = () => {
   const [book, setBook] = useState(null);
   const [catagories, setCatagories] = useState(null);
   const [didUpdate, setDidUpdate] = useState(false);
-  const [item, setİtem] = useState("");
-  const [changeİsRead, setChangeİsRead] = useState("");
+ 
+
+  // const changeİsRead =(id) =>{
+  //   console.log(id);
+  //   const read =book.find(item => item.id === id);
+  //   console.log(read);
+  // }
 
   useEffect(() => {
     axios
@@ -85,14 +90,15 @@ const ListBook = () => {
               <tr>
                 <td>
                   {""}
-                  <div className="" style={{w:"2"}}>
-                    <button
-                      onClick={() => changeİsRead(item.id)}
-                      className="btn btn-sm btn-secondary "
-                    >
-                      {item.isRead === true ? "Done" : "Undone"}
-                    </button>
-                  </div>
+
+                  <button
+                      
+                    onClick={""}
+                    className="btn btn-sm btn-outline-danger border-warning border-4 "
+                    style={{ width: "5px", height: "20px" }}
+                  >
+                    {/* {item.isRead === true ? "Done" : ""} */}
+                  </button>
                 </td>
 
                 <td>{books?.name}</td>
