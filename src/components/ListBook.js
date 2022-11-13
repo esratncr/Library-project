@@ -5,10 +5,9 @@ import Loading from "./Loading";
 import { BsFillTrashFill, BsFillSuitHeartFill } from "react-icons/bs";
 
 const ListBook = () => {
-  const [book, setBook] = useState(null);
+  const [fiteredbook, setFilteredBook] = useState(null);
   const [catagories, setCatagories] = useState(null);
   const [didUpdate, setDidUpdate] = useState(false);
- 
 
   // const changeİsRead =(id) =>{
   //   console.log(id);
@@ -21,7 +20,7 @@ const ListBook = () => {
       .get("  http://localhost:3004/books")
       .then((resbook) => {
         console.log(resbook);
-        setBook(resbook.data);
+        setFilteredBook(resbook.data);
         axios
           .get("  http://localhost:3004/catagories")
           .then((resCat) => {
@@ -59,12 +58,31 @@ const ListBook = () => {
   return (
     <div className="container   ">
       <div className="d-flex justify-content-end ">
+        
+          <form className="d-flex   ">
+            <input
+            value={fiteredbook}
+            ocChange={((event)=>setFilteredBook(event.target.value))}
+              class="me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+
+            <button className="btn btn-outline-warning " type="submit">
+              Search
+            </button>
+          </form>
+       
+
         <Link className=" btn btn-danger my-4" to="/add-book">
           Kitap Ekle
         </Link>
+
         <Link className=" btn btn-danger  my-4 m-2" to="/favoriler">
           Favoriler
         </Link>
+        <div></div>
       </div>
 
       <table className="table table-danger table-hover">
@@ -92,7 +110,6 @@ const ListBook = () => {
                   {""}
 
                   <button
-                      
                     onClick={""}
                     className="btn btn-sm btn-outline-danger border-warning border-4 "
                     style={{ width: "5px", height: "20px" }}

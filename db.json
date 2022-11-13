@@ -1,35 +1,9 @@
 {
   "books": [
     {
-      "id": 2,
-      "name": "suç ve ceza",
-      "author": "Yakup Kadri Karaosmanoğlu",
-      "ısbn": "1112",
-      "catagoryId": "2",
-      "Resim": ""
-    },
-    {
-      "id": 1667991318339,
-      "name": "güzel gidiyor",
-      "author": "esra tuncer",
-      "catagoryId": "1"
-    },
-    {
-      "id": 1668237260096,
+      "id": 1668333370287,
       "name": "esra",
       "author": "esra",
-      "catagoryId": "1"
-    },
-    {
-      "id": 1668237265624,
-      "name": "seeee",
-      "author": "eeee",
-      "catagoryId": "2"
-    },
-    {
-      "id": 1668237270360,
-      "name": "eee",
-      "author": "eeee",
       "catagoryId": "1"
     }
   ],
