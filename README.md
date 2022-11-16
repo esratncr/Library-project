@@ -1,6 +1,6 @@
 
 
- [open up](http://localhost:3000) 
+ [OPEN UP](http://localhost:3000) 
 
 
 
