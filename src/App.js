@@ -4,6 +4,7 @@ import AddBook from "./pages/AddBook";
 import EditBooks from "./pages/EditBooks";
 import Favori from "./pages/favori";
 import Home from "./pages/Home";
+import ListBook from "./components/ListBook";
 
 
 function App() {
@@ -16,9 +17,10 @@ function App() {
       <Route path="/" element={ <Home />} />
       <Route path="/add-book" element={<AddBook />} />
       <Route path="/favoriler" element={<Favori />} />
-      <Route  path ="/edit-book/:bookId" element={<EditBooks />}
+      <Route  path ="/edit-book/:bookId" element={<EditBooks />} />
+      <Route path="" element={ <ListBook />} />
       
-      />
+      
     </Routes>
   </BrowserRouter>
 )

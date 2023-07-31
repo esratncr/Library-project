@@ -20,7 +20,7 @@ const AddBookForm = () => {
   }, []);
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault(); 
 
     if (bookname === "" || author === "" || catagory === "") {
       alert("Kitap adı,Kitap yazarı,kategori boş bırakılamaz");

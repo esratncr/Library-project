@@ -1,8 +1,22 @@
 {
   "books": [
     {
-      "id": 1668333370287,
+      "id": 1,
       "name": "esra",
+      "author": "esra",
+      "isbn": "11111111111",
+      "catagoryId": 1
+    },
+    {
+      "id": 2,
+      "name": "kimmiş",
+      "author": "yazar",
+      "isbn": "777",
+      "catagoryId": 2
+    },
+    {
+      "id": 1690802139901,
+      "name": "kimse",
       "author": "esra",
       "catagoryId": "1"
     }
