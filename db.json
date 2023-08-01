@@ -2,9 +2,8 @@
   "books": [
     {
       "id": 1,
-      "name": "esra",
+      "name": "esraaaaaaaa",
       "author": "esra",
-      "isbn": "11111111111",
       "catagoryId": 1
     },
     {
@@ -13,12 +12,6 @@
       "author": "yazar",
       "isbn": "777",
       "catagoryId": 2
-    },
-    {
-      "id": 1690802139901,
-      "name": "kimse",
-      "author": "esra",
-      "catagoryId": "1"
     }
   ],
   "catagories": [

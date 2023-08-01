@@ -1,63 +1,76 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 import axios from "axios";
 import Loading from "../components/Loading";
-import Header from "../components/Header";
 
-const EditBooks = (props) => {
+const EditBooks = () => {
   const params = useParams();
+  const navigate = useNavigate();
+
   console.log("params", params);
 
   const [bookname, setBookname] = useState("");
   const [author, setAuthor] = useState("");
-  const [isbn, setIsbn] = useState("");
   const [catagory, setCatagory] = useState("");
   const [catagories, setCatagories] = useState(null);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3004/books/${params.kitapId}`)
+      .get(` http://localhost:3004/books/${params.bookId}`)
       .then((res) => {
-        console.log(res.data);
-         
+        console.log(res);
         setBookname(res.data.name);
         setAuthor(res.data.author);
-        setIsbn(res.data.isbn);
-        setCatagory(res.data.catagory);
-      
-      
-
+        setCatagory(res.data.catagoryId);
         axios
-          .get(" http://localhost:3004/catagories")
+          .get(` http://localhost:3004/catagories`)
           .then((res) => {
             setCatagories(res.data);
           })
-          .catch((err) => console.log(err));
+          .catch((err) => console.log("kategori hata", err));
       })
-      .catch((err) => console.log(err));
-
-       }, []);
+      .catch((err) => console.log("book edit  hata", err));
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (bookname === "" || author === "" || catagory === "") {
+      alert("Kitap adı,Kitap yazarı,kategori boş bırakılamaz");
+      return;
+    }
+    const updatedBook = {
+      id: params.bookId,
+      name: bookname,
+      author: author,
+      catagoryId: catagory,
+    };
+    console.log("update", updatedBook);
+
+    axios
+      .put(`http://localhost:3004/books/${params.bookId}`, updatedBook)
+      .then((res) => {
+        console.log(res);
+        navigate("/")
+      })
+      .catch((err) => console.log("update", err));
   };
-
   if (catagories === null) {
-
-    return (<Loading />);
+    return 
+    <Loading />;
   }
 
   return (
     <div>
       <Header />
-
       <div className="container my-5">
         <form onSubmit={handleSubmit}>
           <div className="row">
-            <div className="col">
+            <div className="col ">
               <input
                 type="text"
-                className="form-control"
+                className="form-control text-center"
                 placeholder="Kitap Adı"
                 value={bookname}
                 onChange={(event) => setBookname(event.target.value)}
@@ -66,26 +79,18 @@ const EditBooks = (props) => {
             <div className="col">
               <input
                 type="text"
-                className="form-control"
+                className="form-control text-center"
                 placeholder="Kitap Yazarı"
                 value={author}
                 onChange={(event) => setAuthor(event.target.value)}
               />
             </div>
           </div>
-          <div className="row my-5">
-            <div className="col">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Isbn"
-                value={isbn}
-                onChange={(event) => setIsbn(event.target.value)}
-              />
-            </div>
-            <div className="col">
+          <div className="row col m-4 ">
+            <div className="col-4  "></div>
+            <div className="col-4 ">
               <select
-                className="form-select"
+                className="form-select text-center "
                 value={catagory}
                 onChange={(event) => setCatagory(event.target.value)}
               >
@@ -99,8 +104,19 @@ const EditBooks = (props) => {
             </div>
           </div>
           <div className="d-flex justify-content-center">
-            <button type="submit" className="btn btn-primary w-25">
+            <button
+            
+              type="submit"
+              className="btn btn-danger w-25"
+            >
               Kaydet
+            </button>
+            <button
+              onClick={() => navigate("/")}
+              type="btn"
+              className="btn btn-danger w-25 mx-4"
+            >
+              Vazgec
             </button>
           </div>
         </form>
