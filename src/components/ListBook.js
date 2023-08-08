@@ -11,6 +11,7 @@ const ListBook = (props) => {
   const [diUpdate, setDidUpdate] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [silinecekKitap, setSilinecekKitap] = useState(null);
+  const [silinecekKitapİsmi,setSilinecekKitapİsmi] =useState("")
 
   useEffect(() => {
     axios
@@ -74,10 +75,11 @@ const ListBook = (props) => {
                 <td>{catagory?.name}</td>
                 <td>
                   <button
-                    className="btn-danger"
+                    className="btn-danger mx-2 btn"
                     onClick={() => {
                       setShowModal(true);
                       setSilinecekKitap(book.id);
+                      setSilinecekKitapİsmi(book.name)
                     }}
                   >
                     <i className="bi bi-trash3-fill "></i>
@@ -93,8 +95,10 @@ const ListBook = (props) => {
       </table>
       {showModal === true && (
         <Modal
-          onayla={() => deletBook(silinecekKitap)}
-          setShowModal={setShowModal}
+        aciklama="Silmek istediğinize eminmisinz?" //{`${silinecekKitapİsmi}`} bu da ikinci bir yol olurdu
+        title={silinecekKitapİsmi}
+        onConfirm={() => deletBook(silinecekKitap)}
+        onCansel={()=> setShowModal(false)}
         />
       )}
     </div>
